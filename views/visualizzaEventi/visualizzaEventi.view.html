@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<div class="visualizzaEventi" ng-controller="visualizzaEventi as ctrl">
+  <h1>Visualizzazione Eventi</h1>
+  <table ng-if="!ctrl.flussoVisualizzaModifica">
+    <th>Nome</th>
+    <th>Data</th>
+    <th>Luogo</th>
+    <th>Opzioni</th>
+    <th>Partecipanti</th>
+  <tr ng-repeat="evento in ctrl.eventi track by evento.nome">
+    <td>{{evento.nome}}</td>
+    <td>{{evento.data}}</td>
+    <td>{{evento.luogo}}</td>
+    <td>
+      <ul>
+        <li ng-repeat="opzione in evento.opzioni track by opzione.nome">
+          {{opzione.nome}}
+        </li>
+      </ul>  
+    </td>
+    <td>
+    min[{{evento.vincoliPartecipanti.min}}] - max[{{evento.vincoliPartecipanti.max}}]
+    </td>    
+    <td><button ng-click="ctrl.rimuoviEvento(evento)">elimina</button></td>
+  </tr>
+  </table>  
+  
+  <span ng-if="ctrl.eventi.length > 0">Numero eventi: {{ctrl.eventi.length}}</span>
+     
+  
+</div>
